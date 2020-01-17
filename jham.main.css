@@ -1,0 +1,28 @@
+
+body {
+  /* background-color : rgba( 135, 135, 135, 1); */
+  background-color : rgba(  10, 140, 240, 1);
+  background-image : url('../raster.png');
+}
+
+#navigator {
+  position         : absolute;
+  left             : 50%;
+  bottom           : 0px;
+  height           : 45px;
+  width            : 315px;
+  transform        : translate( -50%, 0% );
+}
+
+#navigator {
+  background-color : rgba(  45, 155, 255, 0.60 );
+}
+
+#board {
+  position         : absolute;
+  left             : 50%;
+  top              : 0px;
+  height           : calc(100% - 45px);
+  width            : 315px;
+  transform        : translate( -50%, 0% );
+}

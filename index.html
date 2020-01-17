@@ -1,0 +1,78 @@
+<html><head><title>JH Applied Medicine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="assets/icon.png" rel="icon" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css?family=Karla|Montserrat:200|Raleway:300" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Fira+Code|Nova+Mono|Inconsolata" rel="stylesheet">
+  <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script
+    src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+    integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+    crossorigin="anonymous"></script>
+  <link href='./css/jham.main.css' rel='stylesheet' />
+  <link href='./css/ux.close-button.css' rel='stylesheet' />
+  <link href='./css/jham.arterial-blood-gas.css' rel='stylesheet' />
+  <script src='./js/arterial-blood-gas.js'></script>
+</head>
+<body>
+  <div id='board'></div>
+  <div id='navigator'>
+    <button id="menu"><span></span><span></span><span></span></button>
+
+  </div>
+</body>
+<script>
+ log     = console.log // lazy
+ url     = 'http://138.68.224.83/leaderboards/'
+
+ wipe = function() { $('#board').empty() }
+
+ window.onload = function() {
+
+   $.ajax({url:"http://138.68.224.83/leaderboards/aag", success: function(r) {
+     console.log(r)
+   }})
+
+  chunks.arterialBloodGas.render();
+
+
+  /* Manage Settings Subpanel Open/Close Button */
+  document.getElementById('menu').addEventListener('click', function() {
+   if (this.className == 'on') {
+       this.classList.remove('on')
+       if ($('#settings-content').hasClass('small')) {
+         $('#settings-content').css('top','100%')
+       } else {
+         $('#settings-content').css('right','-100%')
+       }
+   } else {
+       this.classList.add('on')
+       if ($('#settings-content').hasClass('small')) {
+         $('#settings-content').css('top','calc(100% - 40%)')
+         
+       } else {
+         $('#settings-content').css('right','0%')
+       }
+   }
+  })
+ }
+
+ $(document).ready(function() {
+   /*
+   resizeWindow = function(e) {
+     var newWindowWidth = $(window).width()
+     if (newWindowWidth < 600) {
+       $('link[rel=stylesheet]').attr({href: 'mobile.css'})
+     }
+     $('link[rel=stylesheet]').attr({href: './css/jham.main.css'})
+   }
+   $(window).bind('resize', resizeWindow) */
+   })
+
+</script>
+</html>
