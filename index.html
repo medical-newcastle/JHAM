@@ -18,6 +18,8 @@
   <link href='./css/ux.close-button.css' rel='stylesheet' />
   <link href='./css/jham.arterial-blood-gas.css' rel='stylesheet' />
   <script src='./js/arterial-blood-gas.js'></script>
+  <script src='./js/arterial-blood-gas-generator.js'></script>
+  <script src='./js/arterial-blood-gas-assess.js'></script>
 </head>
 <body>
   <div id='board'></div>
@@ -33,10 +35,11 @@
  wipe = function() { $('#board').empty() }
 
  window.onload = function() {
-
+   /*
    $.ajax({url:"http://138.68.224.83/leaderboards/aag", success: function(r) {
      console.log(r)
    }})
+   */
 
   chunks.arterialBloodGas.render();
 
