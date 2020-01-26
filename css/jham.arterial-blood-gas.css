@@ -5,6 +5,7 @@
   left        : 0%;
   width       : 100%;
   height      : 100%;
+  user-select : none;
 }
 
 #arterialBloodGas #test {
@@ -29,11 +30,21 @@
   font-family : 'Quicksand','Karla';
   width       : 100%;
   height      : 34px;
+  position    : relative;
 }
 
 .header {
   width       : 130px;
   text-align  : right;
+  color       : rgba( 1, 1, 1, 0.55 );
+}
+.not-header {
+  position    : absolute;
+  top         : 0%;
+  left        : 141px;
+  height      : 100%;
+  display     : inline-block;
+  width       : 95px;
 }
 
 #selection .selection {
@@ -113,9 +124,23 @@
   color       : rgba( 175, 175, 175, 1);
 }
 
+.subselection.active, .secondarySubselection.active {
+  color       : rgba( 188, 188, 188, 1);
+}
+.subselection.answer {
+  color       : rgba( 1, 1, 155, 1 );
+}
+.subselection.correct {
+  color       : rgba( 1, 155, 1, 1 );
+}
+.subselection.incorrect {
+  color       : rgba( 155, 1, 1, 1 );
+}
+
 #score {
   position    : absolute;
   top         : calc(274px + 3.1 * 34px);
+  top         : 11px;
   right       : 9px;
   height      : 115px;
   width       : 115px;
@@ -123,15 +148,17 @@
 }
 
 #score #cumulative {
-  font-family : 'Inconsolata','Nova Mono', monospace;
+  font-family : 'Quicksand', 'Nova Mono', 'Inconsolata', monospace;
   font-size   : 45pt;
   position    : absolute;
   left        : 0%;
   top         : 50%;
   width       : calc(100% - 5px);
   text-align  : right;
+  text-align  : right;
+  direction   : rtl;
   transform   : translate( 0%, -50% );
-  color       : rgba( 11, 11, 11, 0.44 );
+  color       : rgba( 11, 11, 11, 0.24 );
 }
 
 #score #questionCount {
@@ -158,4 +185,85 @@
   text-align  : right;
   transform   : translate( 0%, -50% );
   color       : rgba( 11, 11, 11, 0.22 );
+}
+
+#clock {
+  font-family : 'Inconsolata', monospace;
+  font-size   : 33pt;
+  position    : absolute;
+  top         : 23px;
+  left        : 23px;
+  width       : 140px;
+  height      : 43px;
+  color       : rgba( 11, 11, 11, 0.21 );
+}
+
+#subdraw {
+  position    : absolute;
+  top         : calc(274px + 7.3 * 34px);
+  left        : calc((100% - 94%) / 2);
+  width       : 94%;
+  height      : 45px;
+  border      : 1px solid rgba(1,1,1,0.0);
+}
+
+#subdraw #assess {
+  cursor      : pointer;
+  font-family : 'Quicksand','Karla';
+  text-align  : right;
+  padding-right: 33px;
+  position    : absolute;
+  top         : 50%;
+  left        : 50%;
+  line-height : 45px;
+  width       : calc(50% - 33px);
+  transform   : translate( -100%, -50% );
+  border      : 1px solid rgba(1,1,1,0.15);
+  border-right: 1px solid rgba(1,1,1,0.04);
+}
+
+#subdraw #next {
+  cursor      : pointer;
+  font-family : 'Quicksand','Karla';
+  padding-left: 33px;
+  position    : absolute;
+  top         : 50%;
+  left        : 50%;
+  line-height : 45px;
+  width       : calc(50% - 33px);
+  transform   : translate( 0%, -50% );
+  border      : 1px solid rgba(1,1,1,0.15);
+  border-left : 1px solid rgba(1,1,1,0.04);
+}
+#subdraw #assess:hover, #subdraw #next:hover {
+  color       : rgba( 145, 145, 145, 1 );
+  background  : rgba( 1, 1, 45, 0.09 );
+  border      : 1px solid rgba(1,1,8,0.14);
+}
+
+#assess.disabled {
+  color       : rgba( 145, 145, 145, 0.15 );
+}
+#assess.disabled:hover {
+  color       : rgba( 145, 145, 145, 0.15 ) !important;
+  background  : rgba( 1, 1, 1, 0 ) !important;
+  border-right: 1px solid rgba(1,1,8,0) !important;
+}
+
+#start {
+  cursor      : pointer;
+  font-family : 'Quicksand','Karla';
+  text-align  : center;
+  position    : absolute;
+  top         : calc(274px + 7.3 * 34px);
+  left        : calc((100% - 94%) / 2);
+  width       : 94%;
+  height      : 45px;
+  line-height : 45px;
+  border      : 1px solid rgba(1,1,1,0.08);
+}
+#start:hover {
+  color       : rgba( 145, 145, 145, 1 );
+  background  : rgba( 1, 1, 45, 0.09 );
+  border      : 1px solid rgba(1,1,8,0.14);
 }
