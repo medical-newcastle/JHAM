@@ -281,8 +281,8 @@ chunks.arterialBloodGas = (function(){
 
     clock        : {
       interval   : 1000,
-      duration   : 1 * 60 + 1,
-      current    : 1 * 60 + 1,
+      duration   : 3 * 60 + 1,
+      current    : 3 * 60 + 1,
       identity   : false,
       allow      : true,
     },
