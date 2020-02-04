@@ -3,8 +3,8 @@
   <link href="assets/icon.png" rel="icon" type="image/x-icon" />
   <link href="https://fonts.googleapis.com/css?family=Karla|Montserrat:200|Raleway:300" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Quicksand|Overpass+Mono" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding|Source+Code+Pro" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Fira+Code|Nova+Mono|Inconsolata" rel="stylesheet">
   <script
     src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -16,23 +16,29 @@
     crossorigin="anonymous"></script>
   <link href='./css/jham.main.css' rel='stylesheet' />
   <link href='./css/ux.close-button.css' rel='stylesheet' />
+  <link href='./css/jham.module-selector.css' rel='stylesheet' />
   <link href='./css/jham.arterial-blood-gas.css' rel='stylesheet' />
+  <link href='./css/jham.clinical-sequencing.css' rel='stylesheet' />
+  <script src='./js/utility.js'></script>
+  <script src='./js/namey.js'></script>
+  <script src='./js/main.js'></script>
   <script src='./js/arterial-blood-gas.js'></script>
   <script src='./js/arterial-blood-gas-generator.js'></script>
   <script src='./js/arterial-blood-gas-assess.js'></script>
+  <script src='./js/clinical-sequencing.js'></script>
+  <script src='./js/clinical-sequencing.examinations.cardiac.js'></script>
+  <script src='./js/clinical-sequencing.diseases.aortic-stenosis.js'></script>
 </head>
 <body>
   <div id='board'></div>
   <div id='navigator'>
-    <button id="menu"><span></span><span></span><span></span></button>
-
+    <button id="menu" onclick="menu()"><span></span><span></span><span></span></button>
+    <div id='module-selector'></div>
   </div>
 </body>
 <script>
  log     = console.log // lazy
  url     = 'http://138.68.224.83/leaderboards/'
-
- wipe = function() { $('#board').empty() }
 
  window.onload = function() {
    /*
@@ -41,7 +47,9 @@
    }})
    */
 
-  chunks.arterialBloodGas.render();
+  indexing();
+  // chunks.arterialBloodGas.render();
+  chunks.clinicalSequencing.render();
 
 
   /* Manage Settings Subpanel Open/Close Button */
