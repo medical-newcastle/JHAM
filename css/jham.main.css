@@ -31,4 +31,8 @@ body {
   #navigator {
     width     : 100%;
   }
+  
+  #board {
+    width     : 94%;
+  }
 }
