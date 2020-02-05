@@ -26,3 +26,9 @@ body {
   width            : 315px;
   transform        : translate( -50%, 0% );
 }
+
+@media only screen and (max-device-width: 768px) {
+  #navigator {
+    width     : 100%;
+  }
+}
