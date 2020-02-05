@@ -97,6 +97,7 @@ chunks.clinicalSequencing = (function() {
   }
 
   var render = function() {
+    reset();
     var systems = [];
     for (var k in chunks.clinicalSequencing.diseases) {
       var system = chunks.clinicalSequencing.diseases[k].system
@@ -137,8 +138,8 @@ chunks.clinicalSequencing = (function() {
 
     var d = ''
 
-    d += '<div id="CSQ-panel"><div id="CSQ-yes" onclick="chunks.clinicalSequencing.yes()">Yes</div>'
-    d += '<div id="CSQ-no" onclick="chunks.clinicalSequencing.no()">No</div>'
+    d += '<div id="CSQ-panel"><div id="CSQ-yes" onclick="chunks.clinicalSequencing.yes()">Did this!</div>'
+    d += '<div id="CSQ-no" onclick="chunks.clinicalSequencing.no()">Forgot!</div>'
     d += '<div id="CSQ-next" onclick="chunks.clinicalSequencing.initiate()">Start</div></div>'
     d += ''
     $('#board').append(d);
@@ -201,6 +202,7 @@ chunks.clinicalSequencing = (function() {
 
   var initiate = function() {
     var m = $('#CSQ-next').text()
+    $('#CSQ-question').removeClass('mute')
     if (m == 'Start') {
       $('#CSQ-datum').text('');
       $('#CSQ-next').text('First step is...');
@@ -235,6 +237,7 @@ chunks.clinicalSequencing = (function() {
       $('#CSQ-question').text('Ok, please present your case.');
       showclock();
     } else {
+      $('#CSQ-question').addClass('mute')
       checkSign($('#CSQ-question').text()); 
     }
     $('#CSQ-no').css('display','none')
@@ -243,10 +246,12 @@ chunks.clinicalSequencing = (function() {
   }
 
   var no = function() {
+    // $('#CSQ-question').addClass('mute')
     if ($('#CSQ-question').text() == 'Is there anything else you would like to do?') {
       $('#CSQ-question').text('Ok, please present your case.');
       showclock();
     } else {
+      $('#CSQ-question').addClass('mute')
       // checkSign($('#CSQ-question').text());
       
       var t = chunks.clinicalSequencing.current;
@@ -255,7 +260,7 @@ chunks.clinicalSequencing = (function() {
       // console.log(action); console.log(u); console.log(u[action]);
       if (typeof u[Q] == 'undefined') {
         var R = chunks.clinicalSequencing.examinations[chunks.clinicalSequencing.current.system].missed
-console.log(R)
+        // console.log(R)
         if (typeof R[Q] != 'undefined') {
           $('#CSQ-datum').text(R[Q]).addClass('error')
         } else {
@@ -353,6 +358,15 @@ console.log(R)
 
       $('#CSQ-shotclock').text(s)
     }
+  }
+
+  var reset = function() {
+    chunks.clinicalSequencing.clock.current = 0;
+    chunks.clinicalSequencing.clock.identity = false;
+    chunks.clinicalSequencing.clock.allow = true;
+    chunks.clinicalSequencing.step = 0;
+    delete chunks.clinicalSequencing.current;
+    delete chunks.clinicalSequencing.currentSteps;
   }
 
   return {
