@@ -5,6 +5,7 @@
   min-height  : 270px;
   background  : rgba( 14, 14, 14, 0.13);
   background  : rgba( 45, 155, 255, 0.45 );
+  background  : rgba( 15, 115, 225, 1.00 );
   /* opacity     : 0; */
   display     : none;
   transition  : all 140ms;
