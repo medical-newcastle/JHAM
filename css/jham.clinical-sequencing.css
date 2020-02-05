@@ -1,6 +1,7 @@
 
 #CSQ-question {
   font-family : 'Quicksand','Karla';
+  font-size   : 14pt;
   position    : absolute;
   top         : 114px;
   left        : calc((100% - 94%) / 2);
@@ -9,18 +10,19 @@
   border      : 1px solid rgba(1,1,1,0.0);
   text-align  : center;
 }
-
+#CSQ-question.mute {
+  color       : rgba( 34, 34, 34, 0.35 );
+}
 #CSQ-categories {
   font-family : 'Quicksand','Karla';
   position    : absolute;
-  top         : calc(114px + 45px);
+  top         : calc(114px + 45px + 8px);
   left        : calc((100% - 94%) / 2);
   width       : 94%;
   height      : 45px;
   border      : 1px solid rgba(155,1,1,0.0);
   line-height : 36px;
 }
-
 .CSQ-system {
   cursor       : pointer;
   padding-left : 36px;
@@ -28,7 +30,6 @@
   border-top   : 1px solid rgba( 1, 1, 14, 0.09 );
   border-bottom: 1px solid rgba( 1, 1, 14, 0.06 );
 }
-
 .CSQ-system:hover {
   color       : rgba( 145, 145, 145, 1 );
   background  : rgba( 1, 1, 45, 0.19 );
@@ -43,7 +44,6 @@
   border      : 1px solid rgba(1,1,1,0.0);
   transition  : all 140ms;
 }
-
 #CSQ-yes {
   cursor      : pointer;
   font-family : 'Quicksand','Karla';
@@ -60,7 +60,6 @@
   display     : none;
   user-select : none;
 }
-
 #CSQ-no {
   cursor      : pointer;
   font-family : 'Quicksand','Karla';
@@ -76,20 +75,16 @@
   display     : none;
   user-select : none;
 }
-
 #CSQ-panel #CSQ-yes:hover, #CSQ-panel #CSQ-no:hover {
   color       : rgba( 145, 145, 145, 1 );
   border      : 1px solid rgba(1,1,8,0.14);
 }
-
 #CSQ-yes:hover {
   background  : rgba( 1, 114, 45, 0.19 );
 }
-
 #CSQ-no:hover {
   background  : rgba( 114, 1, 45, 0.19 );
 }
-
 #CSQ-next {
   cursor       : pointer;
   font-family  : 'Quicksand','Karla';
@@ -104,7 +99,6 @@
   border-bottom: 1px solid rgba(1,1,1,0.15);
   user-select : none;
 }
-
 #CSQ-panel #CSQ-next:hover {
   color        : rgba( 145, 145, 145, 1 );
   border-top   : 1px solid rgba(1,1,8,0.14);
@@ -113,22 +107,23 @@
 
 #CSQ-datum {
   font-family : 'Quicksand','Karla';
+  font-size   : 13pt;
   position    : absolute;
-  top         : calc(114px + 100px);
+  top         : calc(114px + 100px + 15px);
   left        : calc((100% - 94%) / 2);
   width       : 94%;
   height      : 45px;
   border      : 1px solid rgba(1,1,1,0.0);
   text-align  : center;
 }
-
 #CSQ-datum.error {
   color       : rgba( 105, 25, 25, 1.0 );
 }
 
 #CSQ-shotclock {
   position    : absolute;
-  font-family : 'Source Code Pro','Overpass Mono','Fira Code','Raleway','Quicksand','Karla';
+  
+  font-family : 'Anonymous Pro','Source Code Pro','Overpass Mono','Fira Code','Raleway','Quicksand','Karla';
   font-size   : 34pt;
   color       : rgba( 1, 1, 1, 0.67 );
   top         : calc(114px + 45px + 15px);
