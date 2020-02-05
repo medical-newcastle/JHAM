@@ -6,9 +6,21 @@ chunks.arterialBloodGas = (function(){
   var round = (value, decimals) => {
    return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
    };
+
+  var reset = function() {
+    delete chunks.arterialBloodGas.question;
+    delete chunks.arterialBloodGas.answer;
+    chunks.arterialBloodGas.score = 0;
+    chunks.arterialBloodGas.correct = 0;
+    chunks.arterialBloodGas.outcome.questions = 0;
+    chunks.arterialBloodGas.clock.current = 3 * 60 + 1;
+    chunks.arterialBloodGas.clock.identity = false;
+    chunks.arterialBloodGas.clock.allow = true;
+  }
    
   var render = function() {
     wipe();
+    reset();
     var d = ''
 
     d += '<div id="arterialBloodGas">'
