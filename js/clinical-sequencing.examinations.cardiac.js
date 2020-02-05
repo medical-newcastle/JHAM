@@ -56,7 +56,7 @@ t.push('dizziness and collapse')
 chunks.clinicalSequencing.examinations.cardiac.stems = clone(t)
 
 t = {}
-t['Palpate the radial artery & measure the heart rate, noting irregularity.'] = 'The heart rate is {60,104,4} beats per minute.'
+t['Palpate the radial artery & measure the heart rate, noting irregularity.'] = 'You measure {15,26} beats over 15 seconds.'
 t['Take the blood pressure.'] = 'The blood pressure is {130,155,5}/{55,85,5} mmHg.'
 t['Examine the jugular venous pressure for its height.'] = 'The jugular venous pressure is {1,4} cm.'
 
