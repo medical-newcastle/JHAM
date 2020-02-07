@@ -119,6 +119,9 @@
 #CSQ-datum.error {
   color       : rgba( 105, 25, 25, 1.0 );
 }
+#CSQ-datum.reduced {
+  font-size   : 10pt;
+}
 
 #CSQ-shotclock {
   position    : absolute;
@@ -132,4 +135,42 @@
   width       : 94%;
   transform   : translate( -50%, 0% );
   text-align  : center;
+}
+#CSQ-shotclock.mute {
+  color       : rgba( 1, 1, 1, 0.11 );
+}
+
+.CSQ-action {
+  color       : rgba( 1, 1, 1, 0.45 );
+}
+
+#CSQ-Disease {
+  font-family : 'Quicksand','Karla';
+  font-size   : 14pt;
+  position    : absolute;
+  top         : 44px;
+  left        : calc((100% - 94%) / 2);
+  width       : 94%;
+  height      : 45px;
+  border      : 1px solid rgba(1,1,1,0.0);
+  text-align  : center;
+}
+
+#CSQ-Signs {
+  font-family : 'Quicksand','Karla';
+  font-size   : 11pt;
+  position    : absolute;
+  top         : calc(114px + 35px);
+  left        : calc((100% - 94%) / 2);
+  width       : 100%;
+  height      : calc(274px + 7.3 * 34px - 74px - 90px);
+  overflow-y  : scroll;
+  border      : 1px solid rgba(1,1,1,0.0);
+}
+#CSQ-Signs ul {
+  margin-block-start: 0em;
+  padding-inline-start: 8px;
+}
+#CSQ-shotclock.final {
+  top         :calc(114px + 0px + 0px - 15px);
 }
