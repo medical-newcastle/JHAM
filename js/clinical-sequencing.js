@@ -222,6 +222,13 @@ chunks.clinicalSequencing = (function() {
     } else if ($('#CSQ-next').text() == 'Finish') {
       // FINISH, summary table, reset
       chunks.clinicalSequencing.clock.allow = false;
+      summaryTable();
+      $('#CSQ-datum').text('').addClass('reduced');
+      $('#CSQ-shotclock').addClass('mute');
+      $('#CSQ-next').text('Restart');
+    } else if ($('#CSQ-next').text() == 'Restart') {
+      wipe();
+      render();
     } else {
       $('#CSQ-datum').text('').removeClass('error');
       $('#CSQ-no').css('display','block')
@@ -328,7 +335,42 @@ chunks.clinicalSequencing = (function() {
       }
     } else {
       // console.log(u[action]);
-      $('#CSQ-datum').text(u[action].finding);
+      var verb  = u[action].finding;
+      var rtags = u[action].finding.match(/\{\d+,\d+}/g)
+      if (rtags) {
+        for (var p in rtags) {
+          var jc = rtags[p],
+              jd = jc.match(/\d+/g);
+          var je = randomNumber(parseInt(jd[0]), parseInt(jd[1]));
+          verb   = verb.replace(jc, je);
+        }
+      } else if (u[action].finding.match(/\{\d+,\d+,\d+}/g)) {
+        rtags = u[action].finding.match(/\{\d+,\d+,\d+}/g);
+        for (var p in rtags) {
+          var jc = rtags[p],
+              jd = jc.match(/\d+/g);
+          var n  = parseInt(jd[2]);
+          var je = randomNumber(parseInt(jd[0]) / n, parseInt(jd[1]) / n) * n;
+          verb   = verb.replace(jc, je);
+        }
+      }
+      if (u[action].finding.match(/\{Patient\}/)) {
+        var patient = chunks.clinicalSequencing.current.patient;
+        var fname = patient.name.replace(/\s\w+/,'');
+        verb = verb.replace('{Patient}',fname);
+      }
+      if (u[action].finding.match(/\{They are\}/)) {
+        var patient = chunks.clinicalSequencing.current.patient;
+        if (patient.gender == 'male') {
+          verb = verb.replace('{They are}','He is');
+        } else {
+          verb = verb.replace('{They are}','She is');
+        }
+      }
+
+      chunks.clinicalSequencing.output = chunks.clinicalSequencing.output || [];
+      chunks.clinicalSequencing.output.push({finding:verb,action:action});
+      $('#CSQ-datum').text(verb);
     }
   }
   
@@ -343,6 +385,31 @@ chunks.clinicalSequencing = (function() {
 
   var shotclock = function() {
 
+  }
+
+  var summaryTable = function() {
+    var a = chunks.clinicalSequencing.current
+    var p = chunks.clinicalSequencing.output
+
+    var d = ''
+    d += '<div id="CSQ-Disease">The diagnosis is: <br />'
+    d += '<span id="CSQ-disease-name">' + a.disease + ',</span> '
+    d += '<span id="CSQ-variant">' + a.variant + '</span>'
+    d += '</div>'
+
+    d += '<div id="CSQ-Signs"><ul style="list-style-type:none">'
+    for (var k in p) {
+      var sign = p[k].finding;
+      var act  = p[k].action;
+
+      d += '<li><span class="CSQ-action">' + act + '</span><br /> ' + sign + '</li><br />'
+    }
+    d += '</ul></div>'
+
+    $('#board').append(d);
+    $('#CSQ-question').css('display','none');
+    $('#CSQ-datum').css('display','none');
+    $('#CSQ-shotclock').addClass('final');
   }
 
   var loop = function() {
@@ -367,6 +434,10 @@ chunks.clinicalSequencing = (function() {
     chunks.clinicalSequencing.step = 0;
     delete chunks.clinicalSequencing.current;
     delete chunks.clinicalSequencing.currentSteps;
+    chunks.clinicalSequencing.output = [];
+    $('#CSQ-question').css('display','block');
+    $('#CSQ-datum').removeClass('reduced').css('display','block');
+    $('#CSQ-shotclock').removeClass('final');
   }
 
   return {
