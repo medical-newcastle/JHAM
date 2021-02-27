@@ -1,6 +1,6 @@
 
 String.prototype.toProperCase = function () {
-    return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+  return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 }
 
 function randomProperty(obj) {
@@ -86,13 +86,13 @@ function round(num, scale) {
 }
 
 function randomNumber(min,max) {
-	return Math.floor(Math.random() * (max-min+1)+min);
+  return Math.floor(Math.random() * (max-min+1)+min);
 }
 
 function lpad(str, len, ch) { 
-    if (typeof str == 'number') { str = str.toString() }; 
-    if (ch == null) { ch = ' ' }; 
-    var r = len - str.length;
-    if (r < 0) { r = 0 };
-    return ch.repeat(r) + str;
+  if (typeof str == 'number') { str = str.toString() }; 
+  if (ch == null) { ch = ' ' }; 
+  var r = len - str.length;
+  if (r < 0) { r = 0 };
+  return ch.repeat(r) + str;
 }
